@@ -8,7 +8,7 @@ public class Conversor {
 
     // Metros -> KM
     public double metroParaKm(double m){
-        double km = kmParaMetros(m);
+        double km = m / 1000;
         return km;
     }
 
@@ -24,5 +24,5 @@ public class Conversor {
         return cels;
     }
 
-    
+    //
 }
