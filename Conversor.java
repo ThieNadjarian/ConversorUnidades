@@ -24,5 +24,15 @@ public class Conversor {
         return cels;
     }
 
-    //
+    // Minutos -> Horas
+    public double minParaHora(double min){
+        double hora = min / 60;
+        return hora;
+    }
+
+    // Horas -> Minutos
+    public double horaParaMin(double hora){
+        double min = hora * 60;
+        return min;
+    }
 }
