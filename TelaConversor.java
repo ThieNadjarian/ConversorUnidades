@@ -2,18 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TelaConversor {
-
-    public void mostrarErro(){
-        JFrame erroJanela = new JFrame("ERRO");
-        erroJanela.setSize(300, 250);
-        erroJanela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        JLabel erro = new JLabel("ERRO: Coloca um numero por favor");
-        erro.setBackground(Color.DARK_GRAY);
-        erro.setForeground(Color.RED);
-        erro.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-    }
-
+    
     public static void main(String[] args) {
 
         // Janela criacao
@@ -143,117 +132,182 @@ public class TelaConversor {
         Conversor conversor = new Conversor();
         //Acoes dos Botoes
         btnKmMetro.addActionListener(e -> {
-            btnKmMetro.setVisible(false);
-            btnMetroKm.setVisible(false);
-            btnCelsFahr.setVisible(false);
-            btnFahrCels.setVisible(false);
-            btnMinHora.setVisible(false);
-            btnHoraMin.setVisible(false);
+            try{
+                double val = Double.parseDouble(campoNum.getText());
+                val = conversor.kmParaMetros(val);
+                btnKmMetro.setVisible(false);
+                btnMetroKm.setVisible(false);
+                btnCelsFahr.setVisible(false);
+                btnFahrCels.setVisible(false);
+                btnMinHora.setVisible(false);
+                btnHoraMin.setVisible(false);
 
-            textTitlResultado.setVisible(true);
-            textResultado.setVisible(true);
+                textTitlResultado.setVisible(true);
+                textResultado.setVisible(true);
 
-            textTitlResultado.setText("Kilometro para Metro");
-            double val = Double.parseDouble(campoNum.getText());
-            val = conversor.kmParaMetros(val);
-            textResultado.setText(val + "m");
+                textTitlResultado.setText("Kilometro para Metro");
 
-            btnRefazer.setVisible(true);
+                textResultado.setText(val + "m");
+
+                btnRefazer.setVisible(true);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Faz certo por favor",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
 
         btnMetroKm.addActionListener(e -> {
-            btnKmMetro.setVisible(false);
-            btnMetroKm.setVisible(false);
-            btnCelsFahr.setVisible(false);
-            btnFahrCels.setVisible(false);
-            btnMinHora.setVisible(false);
-            btnHoraMin.setVisible(false);
+            try {
+                double val = Double.parseDouble(campoNum.getText());
+                val = conversor.metroParaKm(val);
 
-            textTitlResultado.setVisible(true);
-            textResultado.setVisible(true);
+                btnKmMetro.setVisible(false);
+                btnMetroKm.setVisible(false);
+                btnCelsFahr.setVisible(false);
+                btnFahrCels.setVisible(false);
+                btnMinHora.setVisible(false);
+                btnHoraMin.setVisible(false);
 
-            textTitlResultado.setText("Metro para Kilometro");
-            double val = Double.parseDouble(campoNum.getText());
-            val = conversor.metroParaKm(val);
-            textResultado.setText(val + "km");
+                textTitlResultado.setVisible(true);
+                textResultado.setVisible(true);
 
-            btnRefazer.setVisible(true);
+                textTitlResultado.setText("Metro para Kilometro");
+
+                textResultado.setText(val + "km");
+
+                btnRefazer.setVisible(true);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Faz certo por favor",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
 
         btnCelsFahr.addActionListener(e -> {
-            btnKmMetro.setVisible(false);
-            btnMetroKm.setVisible(false);
-            btnCelsFahr.setVisible(false);
-            btnFahrCels.setVisible(false);
-            btnMinHora.setVisible(false);
-            btnHoraMin.setVisible(false);
+            try {
+                double val = Double.parseDouble(campoNum.getText());
+                val = conversor.celsiusParaFahr(val);
 
-            textTitlResultado.setVisible(true);
-            textResultado.setVisible(true);
+                btnKmMetro.setVisible(false);
+                btnMetroKm.setVisible(false);
+                btnCelsFahr.setVisible(false);
+                btnFahrCels.setVisible(false);
+                btnMinHora.setVisible(false);
+                btnHoraMin.setVisible(false);
 
-            textTitlResultado.setText("Celsius para Fahrenheit");
-            double val = Double.parseDouble(campoNum.getText());
-            val = conversor.celsiusParaFahr(val);
-            textResultado.setText(val + "°F");
+                textTitlResultado.setVisible(true);
+                textResultado.setVisible(true);
 
-            btnRefazer.setVisible(true);
+                textTitlResultado.setText("Celsius para Fahrenheit");
+
+                textResultado.setText(val + "°F");
+
+                btnRefazer.setVisible(true);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Faz certo por favor",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
 
         btnFahrCels.addActionListener(e -> {
-            btnKmMetro.setVisible(false);
-            btnMetroKm.setVisible(false);
-            btnCelsFahr.setVisible(false);
-            btnFahrCels.setVisible(false);
-            btnMinHora.setVisible(false);
-            btnHoraMin.setVisible(false);
+            try {
+                double val = Double.parseDouble(campoNum.getText());
+                val = conversor.fahrParaCelsius(val);
 
-            textTitlResultado.setVisible(true);
-            textResultado.setVisible(true);
+                btnKmMetro.setVisible(false);
+                btnMetroKm.setVisible(false);
+                btnCelsFahr.setVisible(false);
+                btnFahrCels.setVisible(false);
+                btnMinHora.setVisible(false);
+                btnHoraMin.setVisible(false);
 
-            textTitlResultado.setText("Fahrenheit  para Celsius");
-            double val = Double.parseDouble(campoNum.getText());
-            val = conversor.fahrParaCelsius(val);
-            textResultado.setText(val + "°C");
+                textTitlResultado.setVisible(true);
+                textResultado.setVisible(true);
 
-            btnRefazer.setVisible(true);
+                textTitlResultado.setText("Fahrenheit  para Celsius");
+
+                textResultado.setText(val + "°C");
+
+                btnRefazer.setVisible(true);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Faz certo por favor",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
 
         btnHoraMin.addActionListener(e -> {
-            btnKmMetro.setVisible(false);
-            btnMetroKm.setVisible(false);
-            btnCelsFahr.setVisible(false);
-            btnFahrCels.setVisible(false);
-            btnMinHora.setVisible(false);
-            btnHoraMin.setVisible(false);
+            try{
+                double val = Double.parseDouble(campoNum.getText());
+                val = conversor.horaParaMin(val);
 
-            textTitlResultado.setVisible(true);
-            textResultado.setVisible(true);
+                btnKmMetro.setVisible(false);
+                btnMetroKm.setVisible(false);
+                btnCelsFahr.setVisible(false);
+                btnFahrCels.setVisible(false);
+                btnMinHora.setVisible(false);
+                btnHoraMin.setVisible(false);
 
-            textTitlResultado.setText("Hora para Minuto");
-            double val = Double.parseDouble(campoNum.getText());
-            val = conversor.horaParaMin(val);
-            textResultado.setText(val + "min");
+                textTitlResultado.setVisible(true);
+                textResultado.setVisible(true);
 
-            btnRefazer.setVisible(true);
+                textTitlResultado.setText("Hora para Minuto");
+
+                textResultado.setText(val + "min");
+
+                btnRefazer.setVisible(true);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Faz certo por favor",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
 
         btnMinHora.addActionListener(e -> {
-            btnKmMetro.setVisible(false);
-            btnMetroKm.setVisible(false);
-            btnCelsFahr.setVisible(false);
-            btnFahrCels.setVisible(false);
-            btnMinHora.setVisible(false);
-            btnHoraMin.setVisible(false);
+            try {
+                double val = Double.parseDouble(campoNum.getText());
+                val = conversor.minParaHora(val);
 
-            textTitlResultado.setVisible(true);
-            textResultado.setVisible(true);
+                btnKmMetro.setVisible(false);
+                btnMetroKm.setVisible(false);
+                btnCelsFahr.setVisible(false);
+                btnFahrCels.setVisible(false);
+                btnMinHora.setVisible(false);
+                btnHoraMin.setVisible(false);
 
-            textTitlResultado.setText("Minutos para Hora");
-            double val = Double.parseDouble(campoNum.getText());
-            val = conversor.minParaHora(val);
-            textResultado.setText(val + "min");
+                textTitlResultado.setVisible(true);
+                textResultado.setVisible(true);
 
-            btnRefazer.setVisible(true);
+                textTitlResultado.setText("Minutos para Hora");
+
+                textResultado.setText(val + "min");
+
+                btnRefazer.setVisible(true);
+            } catch (NumberFormatException erro) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        "Faz certo por favor",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE
+                );
+            }
         });
 
         btnRefazer.addActionListener(e -> {
