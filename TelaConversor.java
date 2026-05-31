@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TelaConversor {
-    
+
     public static void main(String[] args) {
 
         // Janela criacao
@@ -126,8 +126,6 @@ public class TelaConversor {
         botoes.add(btnFahrCels);
         botoes.add(btnMinHora);
         botoes.add(btnHoraMin);
-
-
 
         Conversor conversor = new Conversor();
         //Acoes dos Botoes
@@ -322,7 +320,6 @@ public class TelaConversor {
             textResultado.setVisible(false);
 
             btnRefazer.setVisible(false);
-
         });
 
         janela.add(numero, BorderLayout.NORTH);
