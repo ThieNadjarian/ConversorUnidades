@@ -3,6 +3,17 @@ import java.awt.*;
 
 public class TelaConversor {
 
+    public void mostrarErro(){
+        JFrame erroJanela = new JFrame("ERRO");
+        erroJanela.setSize(300, 250);
+        erroJanela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JLabel erro = new JLabel("ERRO: Coloca um numero por favor");
+        erro.setBackground(Color.DARK_GRAY);
+        erro.setForeground(Color.RED);
+        erro.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+    }
+
     public static void main(String[] args) {
 
         // Janela criacao
@@ -32,6 +43,7 @@ public class TelaConversor {
         campoNum.setMaximumSize(new Dimension(100, 20));
         campoNum.setBackground(Color.GRAY);
         campoNum.setForeground(Color.WHITE);
+        campoNum.setHorizontalAlignment(JTextField.CENTER);
 
         //Campo do Resultado
         //-Painel
@@ -56,6 +68,17 @@ public class TelaConversor {
         textResultado.setForeground(Color.WHITE);
         textResultado.setFont(new Font("Comic Sans MS", Font.BOLD, 20));
         textResultado.setVisible(false);
+
+        //-Botao para Refazer
+        JButton btnRefazer = new JButton("Refazer");
+        btnRefazer.setBackground(Color.GREEN);
+        btnRefazer.setForeground(Color.BLACK);
+        btnRefazer.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
+        btnRefazer.setMaximumSize(new Dimension(300, 50));
+        btnRefazer.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnRefazer.add(Box.createVerticalStrut(10));
+        btnRefazer.setVisible(false);
+
 
 
         //Botoes
@@ -100,20 +123,13 @@ public class TelaConversor {
         btnHoraMin.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
         btnHoraMin.setPreferredSize(new Dimension(300, 50));
 
-        JButton btnRefazer = new JButton("Refazer");
-        btnRefazer.setBackground(Color.GREEN);
-        btnRefazer.setForeground(Color.BLACK);
-        btnRefazer.setFont(new Font("Comic Sans MS", Font.BOLD, 17));
-        btnRefazer.setPreferredSize(new Dimension(300, 50));
-        btnRefazer.setVisible(false);
-
-
 
         numero.add(textNum);
         numero.add(campoNum);
 
         resultado.add(textTitlResultado);
         resultado.add(textResultado);
+        resultado.add(btnRefazer);;
 
         botoes.add(btnKmMetro);
         botoes.add(btnMetroKm);
@@ -122,10 +138,138 @@ public class TelaConversor {
         botoes.add(btnMinHora);
         botoes.add(btnHoraMin);
 
+
+
+        Conversor conversor = new Conversor();
         //Acoes dos Botoes
-        
+        btnKmMetro.addActionListener(e -> {
+            btnKmMetro.setVisible(false);
+            btnMetroKm.setVisible(false);
+            btnCelsFahr.setVisible(false);
+            btnFahrCels.setVisible(false);
+            btnMinHora.setVisible(false);
+            btnHoraMin.setVisible(false);
 
+            textTitlResultado.setVisible(true);
+            textResultado.setVisible(true);
 
+            textTitlResultado.setText("Kilometro para Metro");
+            double val = Double.parseDouble(campoNum.getText());
+            val = conversor.kmParaMetros(val);
+            textResultado.setText(val + "m");
+
+            btnRefazer.setVisible(true);
+        });
+
+        btnMetroKm.addActionListener(e -> {
+            btnKmMetro.setVisible(false);
+            btnMetroKm.setVisible(false);
+            btnCelsFahr.setVisible(false);
+            btnFahrCels.setVisible(false);
+            btnMinHora.setVisible(false);
+            btnHoraMin.setVisible(false);
+
+            textTitlResultado.setVisible(true);
+            textResultado.setVisible(true);
+
+            textTitlResultado.setText("Metro para Kilometro");
+            double val = Double.parseDouble(campoNum.getText());
+            val = conversor.metroParaKm(val);
+            textResultado.setText(val + "km");
+
+            btnRefazer.setVisible(true);
+        });
+
+        btnCelsFahr.addActionListener(e -> {
+            btnKmMetro.setVisible(false);
+            btnMetroKm.setVisible(false);
+            btnCelsFahr.setVisible(false);
+            btnFahrCels.setVisible(false);
+            btnMinHora.setVisible(false);
+            btnHoraMin.setVisible(false);
+
+            textTitlResultado.setVisible(true);
+            textResultado.setVisible(true);
+
+            textTitlResultado.setText("Celsius para Fahrenheit");
+            double val = Double.parseDouble(campoNum.getText());
+            val = conversor.celsiusParaFahr(val);
+            textResultado.setText(val + "°F");
+
+            btnRefazer.setVisible(true);
+        });
+
+        btnFahrCels.addActionListener(e -> {
+            btnKmMetro.setVisible(false);
+            btnMetroKm.setVisible(false);
+            btnCelsFahr.setVisible(false);
+            btnFahrCels.setVisible(false);
+            btnMinHora.setVisible(false);
+            btnHoraMin.setVisible(false);
+
+            textTitlResultado.setVisible(true);
+            textResultado.setVisible(true);
+
+            textTitlResultado.setText("Fahrenheit  para Celsius");
+            double val = Double.parseDouble(campoNum.getText());
+            val = conversor.fahrParaCelsius(val);
+            textResultado.setText(val + "°C");
+
+            btnRefazer.setVisible(true);
+        });
+
+        btnHoraMin.addActionListener(e -> {
+            btnKmMetro.setVisible(false);
+            btnMetroKm.setVisible(false);
+            btnCelsFahr.setVisible(false);
+            btnFahrCels.setVisible(false);
+            btnMinHora.setVisible(false);
+            btnHoraMin.setVisible(false);
+
+            textTitlResultado.setVisible(true);
+            textResultado.setVisible(true);
+
+            textTitlResultado.setText("Hora para Minuto");
+            double val = Double.parseDouble(campoNum.getText());
+            val = conversor.horaParaMin(val);
+            textResultado.setText(val + "min");
+
+            btnRefazer.setVisible(true);
+        });
+
+        btnMinHora.addActionListener(e -> {
+            btnKmMetro.setVisible(false);
+            btnMetroKm.setVisible(false);
+            btnCelsFahr.setVisible(false);
+            btnFahrCels.setVisible(false);
+            btnMinHora.setVisible(false);
+            btnHoraMin.setVisible(false);
+
+            textTitlResultado.setVisible(true);
+            textResultado.setVisible(true);
+
+            textTitlResultado.setText("Minutos para Hora");
+            double val = Double.parseDouble(campoNum.getText());
+            val = conversor.minParaHora(val);
+            textResultado.setText(val + "min");
+
+            btnRefazer.setVisible(true);
+        });
+
+        btnRefazer.addActionListener(e -> {
+            btnKmMetro.setVisible(true);
+            btnMetroKm.setVisible(true);
+            btnCelsFahr.setVisible(true);
+            btnFahrCels.setVisible(true);
+            btnMinHora.setVisible(true);
+            btnHoraMin.setVisible(true);
+
+            textTitlResultado.setVisible(false);
+            textResultado.setVisible(false);
+
+            btnRefazer.setVisible(false);
+
+        });
 
         janela.add(numero, BorderLayout.NORTH);
         janela.add(resultado, BorderLayout.CENTER);
